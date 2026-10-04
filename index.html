@@ -49,24 +49,23 @@
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
 
-    <a-assets>
+  <a-assets>
   <a-asset-item
     id="macrophageModel"
     src="./d1b16bef-b75c-48e4-8e39-86ac9f1971fd.glb">
   </a-asset-item>
-    </a-assets>
+</a-assets>
 
-    <!-- Vật thể thử nghiệm -->
-    <a-entity mindar-image-target="targetIndex: 0">
+<a-entity mindar-image-target="targetIndex: 0">
 
-    <a-gltf-model
-  src="#macrophageModel"
-  position="0 0 0"
-  rotation="90 0 0"
-  scale="0.3 0.3 0.3">
-</a-gltf-model>
+  <a-gltf-model
+    src="#macrophageModel"
+    position="0 0 0"
+    rotation="90 0 0"
+    scale="0.3 0.3 0.3">
+  </a-gltf-model>
 
-    </a-entity>
+</a-entity>
 
     <!-- Camera AR -->
     <a-camera
