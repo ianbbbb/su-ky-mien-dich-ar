@@ -4,10 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sử ký Miễn dịch AR</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #182b1b;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 25px;
+    }
+
+    video {
+      width: 90%;
+      max-width: 600px;
+      margin-top: 15px;
+      border-radius: 15px;
+    }
+  </style>
 </head>
 
 <body>
+
   <h1>🛡️ SỬ KÝ MIỄN DỊCH AR</h1>
-  <p>Cổng AR của Vương quốc Cơ thể đã hoạt động!</p>
+  <p>Camera của Vương quốc Cơ thể</p>
+
+  <video id="camera" autoplay playsinline></video>
+
+  <script>
+    const video = document.getElementById("camera");
+
+    navigator.mediaDevices.getUserMedia({
+      video: {
+        facingMode: "environment"
+      },
+      audio: false
+    })
+    .then(stream => {
+      video.srcObject = stream;
+    })
+    .catch(error => {
+      alert("Không thể mở camera: " + error);
+    });
+  </script>
+
 </body>
 </html>
