@@ -2,54 +2,75 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
   <title>Sử ký Miễn dịch AR</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+
+  <!-- MindAR -->
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
   <style>
     body {
       margin: 0;
-      background: #182b1b;
+      overflow: hidden;
+    }
+
+    .guide {
+      position: fixed;
+      z-index: 9999;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 16px;
+      background: rgba(0,0,0,0.65);
       color: white;
+      border-radius: 20px;
       font-family: Arial, sans-serif;
       text-align: center;
-    }
-
-    h1 {
-      margin-top: 25px;
-    }
-
-    video {
-      width: 90%;
-      max-width: 600px;
-      margin-top: 15px;
-      border-radius: 15px;
+      white-space: nowrap;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>🛡️ SỬ KÝ MIỄN DỊCH AR</h1>
-  <p>Camera của Vương quốc Cơ thể</p>
+  <div class="guide">
+    🛡️ Hãy đưa camera vào thẻ Sử ký Miễn dịch
+  </div>
 
-  <video id="camera" autoplay playsinline></video>
+  <a-scene
+    mindar-image="imageTargetSrc: ./targets.mind;"
+    color-space="sRGB"
+    renderer="colorManagement: true, physicallyCorrectLights"
+    vr-mode-ui="enabled: false"
+    device-orientation-permission-ui="enabled: false">
 
-  <script>
-    const video = document.getElementById("camera");
+    <a-assets>
+    </a-assets>
 
-    navigator.mediaDevices.getUserMedia({
-      video: {
-        facingMode: "environment"
-      },
-      audio: false
-    })
-    .then(stream => {
-      video.srcObject = stream;
-    })
-    .catch(error => {
-      alert("Không thể mở camera: " + error);
-    });
-  </script>
+    <!-- Vật thể thử nghiệm -->
+    <a-entity mindar-image-target="targetIndex: 0">
+
+      <a-box
+        position="0 0 0.15"
+        scale="0.35 0.35 0.35"
+        rotation="0 0 0"
+        color="#4CC3D9">
+      </a-box>
+
+    </a-entity>
+
+    <!-- Camera AR -->
+    <a-camera
+      position="0 0 0"
+      look-controls="enabled: false">
+    </a-camera>
+
+  </a-scene>
 
 </body>
 </html>
